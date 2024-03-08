@@ -41,7 +41,21 @@ def save_list(beatmaps):
         listFile.write('\n'.join(beatmaps))
 
 def read_from(list):
-    print('building!')
+    beatIdList = []
+    with open(list, 'r') as listFile:
+        for beatID in listFile:
+            beatIdList.append(beatID)
+    return beatIdList
+
+def fix(list):
+    fixedList = []
+    with open(list, 'r') as listFile:
+        for beatmap in listFile:
+            beatId = beatmap.split()
+            fixedList.append(beatId[0])
+    with open('fixedList.txt', 'wt') as fixedListFile:
+        fixedListFile.write('\n'.join(fixedList))
+    return 'done!'
 
 def menu():
     print('building!')
@@ -54,4 +68,7 @@ print('download concluido.')
 
 ''' SALVAR A LISTA
 save_list(beatmaps)
+'''
+''' FIX LISTA
+print(fix('lista.txt'))
 '''
